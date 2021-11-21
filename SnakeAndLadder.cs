@@ -8,7 +8,6 @@ namespace SnakeAndLadderGame
 {
      class SnakeAndLadder
      {
-
         public void Start()
         {
             //implementing single player start at 0.
@@ -84,10 +83,12 @@ namespace SnakeAndLadderGame
 
 
         readonly Random random = new Random();
+        int diceThrown = 0;
         public int RollDie()
         {
             int dice, check;
             dice = random.Next(1, 7);
+            diceThrown++; //Count number of times dice thrown
             Console.WriteLine($"Dice = {dice}");
             check = CheckPlay();
             //Roll die to produce random number between 1-6
@@ -110,7 +111,10 @@ namespace SnakeAndLadderGame
         {
             //at the start
             Start();
+            //Display dice thrown
+            Console.WriteLine($"Number of Times Dice Thrown: {diceThrown}");
         }
+
     }
 }
 

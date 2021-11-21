@@ -17,8 +17,17 @@ namespace SnakeAndLadderGame
             //initialize player
             playerOne = position;
             Console.WriteLine($"player One position is {playerOne}");
-        }
+            playerOne = RollDie();
+            Console.WriteLine($"player One rolls die and get position {playerOne}");
 
+        }
+        public int RollDie()
+        {
+            //Roll die to produce random number between 1-6
+            Random random = new Random();
+            int dice = random.Next(1, 7);
+            return dice;
+        }
         public void Board()
         {
             //at the start

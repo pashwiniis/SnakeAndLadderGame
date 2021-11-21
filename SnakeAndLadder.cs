@@ -8,16 +8,32 @@ namespace SnakeAndLadderGame
 {
      class SnakeAndLadder
      {
+
         public void Start()
         {
             //implementing single player start at 0.
             //variables
             int position;
             int playerOne = 3;    //initialize player
+            int checkwin;
             Console.WriteLine($"player One position is {playerOne}");
             while (playerOne <= 100) //loop until playerOne reaches 100
             {
-                position = RollDie();
+                //check for win condition
+                checkwin = CheckWin(playerOne);
+                if (checkwin == 1) //player has reached exact 100th position
+                {
+                    Console.WriteLine($"playerOne wins!!");// display win message
+                    break; //End the game
+                }
+                if (checkwin == 2) // player reaches over hundred than do No play
+                {
+                    position = 0;
+                }
+                else // else continue game
+                {
+                    position = RollDie();
+                }
                 // No play condition
                 if (position == 0)
                 {
@@ -45,13 +61,26 @@ namespace SnakeAndLadderGame
                 //ladder condition
                 if (position > 0)
                 {
-                    Console.WriteLine("its a ladder");
+                    Console.WriteLine("its a ladder"); //player moves forward
                     playerOne += position;
+                }
+                if (playerOne > 100)//player position is greater than 100
+                {
+                    playerOne -= position; // do no play
                 }
                 Console.WriteLine($"player One rolls die and get position {playerOne}");
             }
         }
 
+        public int CheckWin(int playerOne)
+        {
+            if (playerOne == 100) //check for 100th position
+                return 1;
+            if (playerOne > 100) //check for over 100th position
+                return 2;
+            else // continue game
+                return 0;
+        }
 
 
         readonly Random random = new Random();
@@ -82,9 +111,7 @@ namespace SnakeAndLadderGame
             //at the start
             Start();
         }
-
-
-     }
+    }
 }
 
     
